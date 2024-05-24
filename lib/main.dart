@@ -1,6 +1,10 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:push_notifications/lib/firebase_api.dart';
+import 'package:push_notifications/pages/home.dart';
+import 'package:push_notifications/pages/notification.dart';
+
+final navigatorKey = GlobalKey<NavigatorState>();
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -14,12 +18,12 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Text('Hello World!'),
-        ),
-      ),
+    return MaterialApp(
+      navigatorKey: navigatorKey,
+      routes: {
+        NotificationPage.route: (context) => const NotificationPage()
+      },
+      home: const HomePage()
     );
   }
 }
